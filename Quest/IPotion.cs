@@ -1,0 +1,29 @@
+<<<<<<< HEAD
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Quest
+{
+    interface IPotion
+    {
+        bool Used { get; }
+    }
+}
+=======
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Quest
+{
+    interface IPotion
+    {
+        bool Used { get; }
+    }
+}
+>>>>>>> Adding Spear
