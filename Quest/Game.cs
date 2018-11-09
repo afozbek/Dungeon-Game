@@ -10,7 +10,7 @@ namespace Quest
 {
     public class Game
     {
-        
+
         public List<Enemy> Enemies;
         public Weapon WeaponInRoom;
 
@@ -20,7 +20,7 @@ namespace Quest
         public int PlayerHitPoints { get { return player.HitPoints; } }
         public List<string> PlayerWeapons { get { return player.Weapons; } }
 
-        private int level =0 ;
+        private int level = 0;
         public int Level { get { return level; } }
 
         private Rectangle boundaries;
@@ -34,23 +34,23 @@ namespace Quest
                 case 1:
 
                     Enemies = new List<Enemy>();
-                    Enemies.Add(new Bat(this, GetRandomLocation(random), new Size(30, 30)));
-                    WeaponInRoom = new Sword(this, GetRandomLocation(random));
+                    Enemies.Add(new Bat(this , GetRandomLocation(random) , new Size(30 , 30)));
+                    WeaponInRoom = new Sword(this , GetRandomLocation(random));
                     break;
                 case 2:
                     Enemies.Clear();
-                    Enemies.Add(new Ghost(this, GetRandomLocation(random), new Size(30, 30)));
-                    WeaponInRoom = new BluePotion(this, GetRandomLocation(random));
+                    Enemies.Add(new Ghost(this , GetRandomLocation(random) , new Size(30 , 30)));
+                    WeaponInRoom = new BluePotion(this , GetRandomLocation(random));
                     break;
                 case 3:
                     Enemies.Clear();
-                    Enemies.Add(new Ghoul(this, GetRandomLocation(random), new Size(30, 30)));
-                    WeaponInRoom = new Bow(this, GetRandomLocation(random));
+                    Enemies.Add(new Ghoul(this , GetRandomLocation(random) , new Size(30 , 30)));
+                    WeaponInRoom = new Bow(this , GetRandomLocation(random));
                     break;
                 case 4:
                     Enemies.Clear();
-                    Enemies.Add(new Bat(this, GetRandomLocation(random), new Size(30, 30)));
-                    Enemies.Add(new Ghost(this, GetRandomLocation(random), new Size(30, 30)));
+                    Enemies.Add(new Bat(this , GetRandomLocation(random) , new Size(30 , 30)));
+                    Enemies.Add(new Ghost(this , GetRandomLocation(random) , new Size(30 , 30)));
                     WeaponInRoom = null;
                     if (CheckPlayerInventory("Bow"))
                     {
@@ -58,37 +58,37 @@ namespace Quest
                                 || (CheckPlayerInventory("Blue Potion")
                                     && CheckPotionUsed("Blue Potion")))
                         {
-                            WeaponInRoom = new BluePotion(this, GetRandomLocation(random));
+                            WeaponInRoom = new BluePotion(this , GetRandomLocation(random));
                         }
                     }
                     else
                     {
-                        WeaponInRoom = new Bow(this, GetRandomLocation(random));
+                        WeaponInRoom = new Bow(this , GetRandomLocation(random));
                     }
                     break;
                 //Bonus level!..
                 case 5:
                     Enemies.Clear();
-                    WeaponInRoom = new Spear(this, GetRandomLocation(random));
+                    WeaponInRoom = new Spear(this , GetRandomLocation(random));
                     break;
 
                 case 6:
                     Enemies.Clear();
-                    Enemies.Add(new Bat(this, GetRandomLocation(random), new Size(30, 30)));
-                    Enemies.Add(new Ghoul(this, GetRandomLocation(random), new Size(30, 30)));
-                    WeaponInRoom = new RedPotion(this, GetRandomLocation(random));
+                    Enemies.Add(new Bat(this , GetRandomLocation(random) , new Size(30 , 30)));
+                    Enemies.Add(new Ghoul(this , GetRandomLocation(random) , new Size(30 , 30)));
+                    WeaponInRoom = new RedPotion(this , GetRandomLocation(random));
                     break;
                 case 7:
                     Enemies.Clear();
-                    Enemies.Add(new Ghost(this, GetRandomLocation(random), new Size(30, 30)));
-                    Enemies.Add(new Ghoul(this, GetRandomLocation(random), new Size(30, 30)));
-                    WeaponInRoom = new Mace(this, GetRandomLocation(random));
+                    Enemies.Add(new Ghost(this , GetRandomLocation(random) , new Size(30 , 30)));
+                    Enemies.Add(new Ghoul(this , GetRandomLocation(random) , new Size(30 , 30)));
+                    WeaponInRoom = new Mace(this , GetRandomLocation(random));
                     break;
                 case 8:
                     Enemies.Clear();
-                    Enemies.Add(new Bat(this, GetRandomLocation(random), new Size(30, 30)));
-                    Enemies.Add(new Ghost(this, GetRandomLocation(random), new Size(30, 30)));
-                    Enemies.Add(new Ghoul(this, GetRandomLocation(random), new Size(30, 30)));
+                    Enemies.Add(new Bat(this , GetRandomLocation(random) , new Size(30 , 30)));
+                    Enemies.Add(new Ghost(this , GetRandomLocation(random) , new Size(30 , 30)));
+                    Enemies.Add(new Ghoul(this , GetRandomLocation(random) , new Size(30 , 30)));
                     WeaponInRoom = null;
                     if (CheckPlayerInventory("Mace"))
                     {
@@ -96,12 +96,12 @@ namespace Quest
                                 || (CheckPlayerInventory("Red Potion")
                                     && CheckPotionUsed("Red Potion")))
                         {
-                            WeaponInRoom = new RedPotion(this, GetRandomLocation(random));
+                            WeaponInRoom = new RedPotion(this , GetRandomLocation(random));
                         }
                     }
                     else
                     {
-                        WeaponInRoom = new Mace(this, GetRandomLocation(random));
+                        WeaponInRoom = new Mace(this , GetRandomLocation(random));
                     }
                     break;
                 case 9:
@@ -109,21 +109,19 @@ namespace Quest
                     break;
             }
         }
-
         //First let the player move then let the enemies move
         //First we call our Player's Move then foreach loop throug all 
         //existing enemies..
 
-
         public Game(Rectangle boundaries)
         {
             this.boundaries = boundaries;
-            player = new Player(this,
-                new Point(boundaries.Left + 10, boundaries.Top + 70),
-                new Size(30, 30));
+            player = new Player(this ,
+                new Point(boundaries.Left + 10 , boundaries.Top + 70) ,
+                new Size(30 , 30));
         }
 
-        public void Move(Direction direction, Random random)
+        public void Move(Direction direction , Random random)
         {
             player.Move(direction);
             foreach (Enemy enemy in Enemies)
@@ -147,20 +145,20 @@ namespace Quest
             return player.CheckPotionUsed(potionName);
         }
 
-        public void HitPlayer(int maxDamage, Random random)
+        public void HitPlayer(int maxDamage , Random random)
         {
-            player.Hit(maxDamage, random);
+            player.Hit(maxDamage , random);
         }
 
-        public void IncreasePlayerHealth(int health, Random random)
+        public void IncreasePlayerHealth(int health , Random random)
         {
-            player.IncreaseHealth(health, random);
-           
+            player.IncreaseHealth(health , random);
+
         }
 
-        public void Attack(Direction direction, Random random)
+        public void Attack(Direction direction , Random random)
         {
-            player.Attack(direction, random);
+            player.Attack(direction , random);
             foreach (Enemy enemy in Enemies)
             {
                 if (!enemy.Dead)
@@ -170,7 +168,7 @@ namespace Quest
             }
         }
 
-        
+
 
 
         public Point GetRandomLocation(Random random)
@@ -181,7 +179,7 @@ namespace Quest
             return new Point(
                 boundaries.Left
                     + random.Next(boundaries.Right / 10 - boundaries.Left / 10)
-                    * 10,
+                    * 10 ,
                 boundaries.Top
                     + random.Next(boundaries.Bottom / 10 - boundaries.Top / 10)
                     * 10)
